@@ -1,8 +1,8 @@
-- [写一个 `execTime` 函数，要求如下](#sleep)
-
++ [sleep](#sleep)
++ [execTime](#exectime)
 
 ### Sleep
-1. 写一个 `execTime` 函数，要求如下
+**1. 写一个 `execTime` 函数，要求如下**
 + 参数：时间毫秒数
 + 作用：什么都不做，但函数执行消耗的时间为参数传递的毫秒数
 ```
@@ -20,7 +20,8 @@ function execTime(t){
   while(new Date() - now < t){}
 }
 ```  
-### 2. 写一个 execTime 函数，要求
+### execTime
+**2. 写一个 execTime 函数，要求**
 + 参数 t：时间毫秒数
 + 参数 callback：回调函数
 ```
