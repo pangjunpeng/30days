@@ -2,7 +2,7 @@
 + [异步与定时器](#exectime)
 + [obj.obj === obj](#obj)
 + [fn() === fn;fn.fn===fn](#function)
-### Sleep
+## Sleep
 **1. 写一个 `execTime` 函数，要求如下**
 + 参数：时间毫秒数
 + 作用：什么都不做，但函数执行消耗的时间为参数传递的毫秒数
@@ -21,7 +21,7 @@ function execTime(t){
   while(new Date() - now < t){}
 }
 ```  
-### execTime
+## execTime
 **2. 写一个 execTime 函数，要求**
 + 参数 t：时间毫秒数
 + 参数 callback：回调函数
@@ -42,7 +42,7 @@ function execTime(t, fn){
   setTimeout(fn, t)
 }
 ```
-### obj
+## obj
 **3. 创建一个对象 obj，使得 obj.obj.obj.obj.obj === obj，即，不管出现多少次 .obj，都得到 obj**
 ### 解
 ```javascript
@@ -57,8 +57,8 @@ obj = {
   }
 }
 ```
-### function
-**写出一个函数 fn，使得 fn 满足以下条件：**
+## function
+**4. 写出一个函数 fn，使得 fn 满足以下条件：**
 + fn() === fn
 + fn.fn === fn
 ### 解
