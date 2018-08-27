@@ -1,6 +1,6 @@
 + [sleep](#sleep)
 + [execTime](#exectime)
-
++ [obj.obj === obj](#obj.obj)
 ### Sleep
 **1. 写一个 `execTime` 函数，要求如下**
 + 参数：时间毫秒数
@@ -40,4 +40,11 @@ console.log(2)
 function execTime(t, fn){
   setTimeout(fn, t)
 }
+```
+### obj.obj
+**3. 创建一个对象 obj，使得 obj.obj.obj.obj.obj === obj，即，不管出现多少次 .obj，都得到 obj**
+### 解
+```
+obj = {}
+obj.obj = obj
 ```
