@@ -1,7 +1,9 @@
 + [sleep函数](#sleep)
 + [异步与定时器](#exectime)
 + [obj.obj === obj](#obj)
-+ [fn() === fn;fn.fn===fn](#function)
++ [fn() === fn;fn.fn===fn](#function1)
++ [fn() // 'a'; fn()() // 'b'](#function2)
++ [fn()==='a'; fn()()==='b'](#function3)
 ## Sleep
 **1. 写一个 `execTime` 函数，要求如下**
 + 参数：时间毫秒数
@@ -106,5 +108,28 @@ function fn(){
       str = 'c'
     }
   }
+}
+```
+## function3
+**4. 写出一个函数 fn，使得 fn 满足以下条件：**
++ fn() == 'a'
++ fn()() == 'b'
++ fn()()() == 'c'
+### 解
+```javascript
+function fn(){
+  return a
+}
+function a(){
+  return b
+}
+a.toString = function(){
+  return 'a'
+}
+function b(){
+  return 'c'
+}
+b.toString = function(){
+  return 'b'
 }
 ```
