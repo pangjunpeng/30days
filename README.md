@@ -57,7 +57,7 @@ obj = {
   }
 }
 ```
-## function
+## function1
 **4. 写出一个函数 fn，使得 fn 满足以下条件：**
 + fn() === fn
 + fn.fn === fn
@@ -67,4 +67,44 @@ function fn(){
   return fn
 }
 fn.fn = fn //函数本身也是对象，也可以设置属性
+```
+## function2
+**5. 写一个函数 fn，使得 fn 满足一下条件：**
++ fn() 打印出 'a'
++ fn()() 打印出 'b'
++ fn()()() 打印出 'c'
+### 解
+```javascript
+function fn(){
+  var timer = setTimeout(() => {
+    console.log('a')
+  })
+  return function (){
+    clearTimeout(timer)
+    timer = setTimeout(() => {
+      console.log('b')
+    })
+    return function (){
+      clearTimeout(timer)
+      timer = setTimeout(() => {
+        console.log('c')
+      })
+    }
+  }
+}
+```
+完美版
+```javascript
+function fn(){
+  var str = 'a'
+  setTimeout(() => {
+    console.log(str)
+  })
+  return function (){
+    str = 'b'
+    return function (){
+      str = 'c'
+    }
+  }
+}
 ```
