@@ -5,7 +5,7 @@
 + [5. fn() // 'a'; fn()() // 'b'](#function2)
 + [6. fn()==='a'; fn()()==='b'](#function3)
 + [7. promise](#promise)
-+ [8. 数组排序byField](#byField)
++ [8. 数组排序byField](#byfield)
 ## Sleep
 **1. 写一个 `execTime` 函数，要求如下**
 + 参数：时间毫秒数
