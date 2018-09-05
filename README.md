@@ -1,9 +1,11 @@
-+ [sleep函数](#sleep)
-+ [异步与定时器](#exectime)
-+ [obj.obj === obj](#obj)
-+ [fn() === fn;fn.fn===fn](#function1)
-+ [fn() // 'a'; fn()() // 'b'](#function2)
-+ [fn()==='a'; fn()()==='b'](#function3)
++ [1. sleep函数](#sleep)
++ [2. 异步与定时器](#exectime)
++ [3. obj.obj === obj](#obj)
++ [4. fn() === fn;fn.fn===fn](#function1)
++ [5. fn() // 'a'; fn()() // 'b'](#function2)
++ [6. fn()==='a'; fn()()==='b'](#function3)
++ [7. promise](#promise)
++ [8. 数组排序byField](#byField)
 ## Sleep
 **1. 写一个 `execTime` 函数，要求如下**
 + 参数：时间毫秒数
@@ -133,3 +135,98 @@ b.toString = function(){
   return 'b'
 }
 ```
+### promise
+**小明成绩不好，每次考试都靠瞎。小明的老师对他说：“小明，如果考不到60分你继续考，直到考到60分，我实现你的愿望让你和凯丽坐到一起”**
+```
+function exam() {
+  var score = Math.floor(Math.random() * 101)
+  if (score >= 60) {
+    console.log('及格，和凯丽坐到一起')
+  } else {
+    console.log('不及格，继续考试')
+    setTimeout(exam, 1000)
+  }
+}
+exam()
+```
+对上述代码使用 Promise 改写，能用以下方式调用
+```
+exam().then(score => {
+  console.log('及格，和凯丽坐到一起', score)
+})
+```
+### 解
+1. 没有用到延时1秒，pass
+```
+function exam(){
+	return new Promise((resolve, reject) => {
+    var score = Math.floor(Math.random() * 101)
+    while(score < 60){
+      console.log('不及格，继续考试')
+      score = Math.floor(Math.random() * 101)
+    }
+    resolve(score)
+	})
+}
+```
+2. 
+```
+function exam(){
+	return new Promise((resolve, reject) => {
+		function _exam(){
+      var score = Math.floor(Math.random() * 101)
+      if (score >= 60) {
+          resolve(score)
+      } else {
+          console.log('不及格，继续考试')
+          setTimeout(_exam, 1000)
+      }
+		}
+		_exam()
+	})
+}
+```
+3. 
+```
+function exam(){
+	return new Promise((resolve, reject) => {
+    var score = Math.floor(Math.random() * 101)
+    if (score >= 60) {
+      resolve(score)
+    } else {
+      console.log('不及格，继续考试')
+      setTimeout(() => { resolve(exam()) }, 1000)
+    }
+	})
+}
+```
+### byField
+**写一个 byField 函数，实现数组按姓名、年纪任意字段排序**
+```
+var users = [
+  { name: 'John', age: 20, company: 'Baidu' },
+  { name: 'Pete', age: 18, company: 'Alibaba' },
+  { name: 'Ann', age: 19, company: 'Tencent' }
+];
+
+users.sort(byField('company'))
+// 输出
+/*
+[
+  { name: 'Pete', age: 18, company: 'Alibaba' },
+  { name: 'John', age: 20, company: 'Baidu' },
+  { name: 'Ann', age: 19, company: 'Tencent' }
+];
+*/
+users.sort(byField('name'))
+// 输出
+/*
+[
+  { name: 'Ann', age: 19, company: 'Tencent' },
+  { name: 'John', age: 20, company: 'Baidu' },
+  { name: 'Pete', age: 18, company: 'Alibaba' },
+];
+*/
+```
+### 解
+待续
